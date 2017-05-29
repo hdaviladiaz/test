@@ -1,0 +1,5 @@
+*.key
+**/.DS_Store
+.vagrant/
+keys.txt
+vault-server/certs/*.crt
