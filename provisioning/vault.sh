@@ -12,7 +12,7 @@ for i in $(awk  '/Unseal/ {print $4}' keys.txt); do vault unseal "$i"; done
 awk  '/Initial Root/ {print $4}' keys.txt | xargs vault auth
 vault auth-enable cert
 vault policy-write leave-team ./vault-server/policies/default-team-policy.hcl
-for i in `ls ./vault-server/users/certs/*.cer`; do
+for i in `ls ./vault-server/users/certs/*.crt`; do
 	filewithextension=$(basename "$i")
 	filename="${filewithextension%.*}"
   vault write auth/cert/certs/$filewithextension display_name="$filename" policies=leave-team certificate=@$i ttl=3600;
