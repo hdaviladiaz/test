@@ -1,4 +1,9 @@
 #!/bin/bash
+#SELF SIGNED SSL CERTIFICATE FOR VAULT
+openssl req -newkey rsa:4096 -nodes -sha512 -x509 -days 3650 \
+        -nodes -subj "/C=EC/ST=Pichincha/L=Quito/O=ThoughtWorks EC/CN=leave.thoughtworks.ec" \
+        -out vault-server/certs/vault-cert.crt  -keyout vault-server/certs/vault-cert.key
+
 #INSTALL DOCKER
 sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
