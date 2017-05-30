@@ -12,20 +12,23 @@ services:
     cap_add:
       - IPC_LOCK
     entrypoint: vault server -config=/vault/config/
+
   gocd-server:
-    image: go-server:latest
+    image: gocd/gocd-server:v17.4.0
     container_name: gocd-server
     volumes:
       - ./gocd/plugins:/godata/plugins/external/
-    build:
-      context: ./gocd/go-server
+      - ./gocd/ssh/key:/home/go/.ssh/
+      - ./gocd/ssh/config:/etc/ssh/
+      - ./gocd/go-server:/godata/config/
     ports:
-      - "3000:8153"
-      - "3010:8154"
+      - "8153:8153"
+      - "8154:8154"
+
   gocd-agent:
     image: go-agent:latest
     container_name: gocd-agent
     build:
       context: ./gocd/go-agent
-    depends_on:
+    links:
       - gocd-server

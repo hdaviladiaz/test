@@ -23,6 +23,10 @@ sudo apt-get install -y ca-certificates
 sudo cp vault-server/certs/vault-cert.crt /usr/local/share/ca-certificates/
 sudo update-ca-certificates
 
+#GENERATING SSH KEY
+mkdir ../gocd/ssh/key
+ssh-keygen -t rsa -C "gocd@thoughtworks.com" -f ../gocd/ssh/key
+
 echo "######################################################"
 echo "Don't forget to relog/reboot before provisioning vault"
 echo "######################################################"

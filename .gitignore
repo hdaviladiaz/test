@@ -4,3 +4,6 @@
 keys.txt
 vault-server/certs/*.crt
 vault-server/file/
+gocd/ssh/key/*
+gocd/go-server/*
+!gocd/go-server/cruise-config.xml

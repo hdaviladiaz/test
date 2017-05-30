@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="90">
+  <server artifactsdir="artifacts" agentAutoRegisterKey="b4b11350-2989-4062-a2f6-496fc1a3906b" commandRepositoryLocation="default" serverId="9bcb7d6f-9cbe-4cc9-82e8-fc20d3ecc810" />
+  <config-repos>
+    <config-repo plugin="yaml.config.plugin">
+      <git url="git@git.thoughtworks.net:leave/pipelines.git" />
+    </config-repo>
+  </config-repos>
+</cruise>
