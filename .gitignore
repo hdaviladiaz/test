@@ -2,7 +2,7 @@
 **/.DS_Store
 .vagrant/
 keys.txt
-vault-server/certs/*.crt
+vault-server/certs/*.key
 vault-server/file/
 gocd/ssh/key/*
 gocd/go-server/*
