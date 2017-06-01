@@ -17,7 +17,30 @@ openssl req -newkey rsa:4096 -nodes -sha512 -x509 -days 3650 \
 > - Asegúrate de guardar de forma segura la llave privada del certificado y no subirla al repositorio
 
 #### 2. Generar los certificados individuales para cada miembro del equipo
-#### 3. Ejecutar provision.sh
+```bash
+openssl req -newkey rsa:4096 -nodes -sha512 -x509 -days 3650 -nodes -subj “/C=EC/ST=Pichincha/L=Quito/O=ThoughtWorks EC/CN=<member-name-lastname>”  -out vault-server/users/certs/<member-name>.crt  -keyout vault-server/users/certs/<member-name>.key
+```
+#### 3. Ejecutar aprovisionamiento
+#### 3.1 Requerimientos
+- python 2.7.x o superior
+- pip
+- ansible
+- git (instalar desde el binario)
+- Acceso al repositorio de infraestructura
+- Contraseña de ansible-vault
+
+#### 3.2 Instalación en MAC OSX
+```bash
+brew install python 
+sudo easy_install pip
+pip install ansible 
+```
+#### 3.3 Ejecutar el aprovisionamiento con Ansible
+```bash
+ansible-playbook playbook.yml  -u <usuario-remoto> -k --ask-vault-pass
+```
+> **Note:**
+> Se presupone que se conoce el usuario y la contraseña del usuario remoto de la máquina a aprovisionar. Es necesario que este usuario tenga permisos para hacer sudo sin solicitar contraseña
 #### 4. Poner comandos para escribir/leer un secreto
 #### 5. Explicar la estructura de los secretos en el vault /dev/qa/stg/prod
 #### 6. Explicar como revocar certificados
