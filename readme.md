@@ -41,6 +41,7 @@ ansible-playbook playbook.yml  -u <usuario-remoto> -k --ask-vault-pass
 ```
 > **Note:**
 > Se presupone que se conoce el usuario y la contraseña del usuario remoto de la máquina a aprovisionar. Es necesario que este usuario tenga permisos para hacer sudo sin solicitar contraseña
+
 #### 4. Poner comandos para escribir/leer un secreto
 #### 5. Explicar la estructura de los secretos en el vault /dev/qa/stg/prod
 #### 6. Explicar como revocar certificados
