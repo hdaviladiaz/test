@@ -8,3 +8,4 @@ gocd/ssh/key/*
 gocd/go-server/*
 !gocd/go-server/cruise-config.xml
 provisioning/*.swp
+**/*.retry
