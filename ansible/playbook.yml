@@ -1,0 +1,35 @@
+---
+- hosts: all
+
+  tasks:
+
+    - name: Ensure git is installed
+      package:
+        name: git
+        state: present
+      become: yes
+
+    - name: Accept gitlab ssh host key
+      known_hosts:
+        name: git.thoughtworks.net
+        key: "{{ lookup('file', 'pubkeys/git.thoughtworks.net') }}"
+
+    - name: Add ssh pub keys for gitlab
+      copy:
+        src: ./pubkeys/gitlab_rsa.pub
+        dest: ~/.ssh/
+
+    - name: Add ssh priv keys for gitlab
+      copy:
+        src: ./privkeys/gitlab_rsa
+        dest: ~/.ssh/
+        mode: 0400
+
+    - name: Clone infraestructure git repo
+      git:
+        repo: git@git.thoughtworks.net:leave/infraestructura.git
+        dest: ./infraestructura/
+        clone: yes
+        update: yes
+        force: yes
+        key_file: ~/.ssh/gitlab_rsa
