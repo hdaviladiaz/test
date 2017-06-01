@@ -3,6 +3,8 @@
 
   tasks:
 
+    - include_vars: "./vars/secrets.yml"
+
     - name: Ensure git is installed
       package:
         name: git
@@ -21,8 +23,8 @@
 
     - name: Add ssh priv keys for gitlab
       copy:
-        src: ./privkeys/gitlab_rsa
-        dest: ~/.ssh/
+        content: "{{ private_gitlab_ssh_key }}"
+        dest: ~/.ssh/gitlab_rsa
         mode: 0400
 
     - name: Clone infraestructure git repo
