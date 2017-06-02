@@ -32,7 +32,3 @@ services:
       context: ./gocd/go-agent
     links:
       - gocd-server
-
-  postgres:
-    image: postgres:9.6.3
-    container_name: postgres

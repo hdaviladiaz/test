@@ -5,11 +5,34 @@
 
     - include_vars: "./vars/secrets.yml"
 
-    - name: Ensure git is installed
-      package:
-        name: git
+    - name: Adding docker repository key
+      apt_key:
+        data: "{{ lookup('file', './pubkeys/docker.repo.gpg') }}"
         state: present
       become: yes
+
+    - name: Adding docker repository
+      apt_repository:
+        repo:  deb [arch=amd64] https://download.docker.com/linux/ubuntu trusty stable
+        state: present
+      become: yes
+
+    - name: Ensure packages are installed
+      package:
+        name: "{{ item }}"
+        state: present
+      become: yes
+      with_items:
+        - git
+        - docker-ce
+        - python-pip
+
+    - name: Install pip packages required for docker
+      pip:
+        name: "{{ item }}"
+      become: yes
+      with_items:
+        - docker-compose
 
     - name: Accept gitlab ssh host key
       known_hosts:
@@ -30,8 +53,17 @@
     - name: Clone infraestructure git repo
       git:
         repo: git@git.thoughtworks.net:leave/infraestructura.git
-        dest: ./infraestructura/
+        dest: ~/infraestructura/
         clone: yes
-        update: yes
-        force: yes
         key_file: ~/.ssh/gitlab_rsa
+
+    - name: Copy docker-compose.yml to home folder
+      copy:
+        src: ~/infraestructura/docker-compose.yml
+        dest: ~/docker-compose.yml
+        remote_src: True
+
+    - docker_service:
+        project_src: gocd-server
+        state: absent
+      connection: local
