@@ -12,7 +12,7 @@ RUN tar xzvf ruby-2.4.1.tar.gz
 RUN cd ruby-2.4.1;./configure
 RUN cd ruby-2.4.1; make; make install
 RUN gem install bundler
-RUN gem install pg -v '0.20.0'
+RUN yum install -y postgresql-libs postgresql-devel
 
 ENV GO_SERVER_IP_ADDRESS gocd-server
 ENV GO_SERVER_AGENT_PORT 8154

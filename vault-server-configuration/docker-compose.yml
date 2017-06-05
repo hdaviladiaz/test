@@ -1,0 +1,16 @@
+version: '2'
+services:
+
+  leave-vault:
+    image: vault
+    container_name: leave-vault
+    ports:
+      - "0.0.0.0:8200:8200"
+    volumes:
+      - ../../vault-server/file:/vault/file:rw
+      - ../../vault-server/config:/vault/config:rw
+      - ../../vault-server/certs/:/vault/certs:rw
+    cap_add:
+      - IPC_LOCK
+    entrypoint: vault server -config=/vault/config/
+
