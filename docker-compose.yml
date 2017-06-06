@@ -1,6 +1,5 @@
 version: '2'
 services:
-
   gocd-server:
     image: gocd/gocd-server:v17.4.0
     container_name: gocd-server
@@ -26,4 +25,8 @@ services:
 
   postgres:
     image: postgres:9.6.3
-    container_name: postgres
+    container_name: db.leave.thoughtworks.ec
+    environment:
+      POSTGRES_USER: leave-backend
+    ports:
+      - "5432:5432"
