@@ -20,12 +20,10 @@ services:
       - ./gocd/ssh/config:/etc/ssh/
     build:
       context: ./gocd/go-agent
-    links:
-      - gocd-server
 
   postgres:
     image: postgres:9.6.3
-    container_name: db.leave.thoughtworks.ec
+    container_name: database-leave
     environment:
       POSTGRES_USER: leave-backend
     ports:
