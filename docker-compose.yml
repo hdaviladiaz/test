@@ -25,6 +25,6 @@ services:
     image: postgres:9.6.3
     container_name: database-leave
     environment:
-      POSTGRES_USER: leave-backend
+      - POSTGRES_USER=leave-backend
     ports:
       - "5432:5432"
