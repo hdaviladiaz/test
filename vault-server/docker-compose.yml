@@ -7,9 +7,9 @@ services:
     ports:
       - "0.0.0.0:8200:8200"
     volumes:
-      - ../../vault-server/file:/vault/file:rw
-      - ../../vault-server/config:/vault/config:rw
-      - ../../vault-server/certs/:/vault/certs:rw
+      - ./file:/vault/file:rw
+      - ./config:/vault/config:rw
+      - ./certs/:/vault/certs:rw
     cap_add:
       - IPC_LOCK
     entrypoint: vault server -config=/vault/config/
