@@ -13,6 +13,7 @@ RUN cd ruby-2.4.1;./configure
 RUN cd ruby-2.4.1; make; make install
 RUN gem install bundler
 RUN yum install -y postgresql-libs postgresql-devel
+RUN npm install -g heroku-cli
 
 ENV GO_SERVER_IP_ADDRESS gocd-server
 ENV GO_SERVER_AGENT_PORT 8154
