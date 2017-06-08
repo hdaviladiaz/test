@@ -14,7 +14,6 @@ services:
       
   gocd-agent:
     image: go-agent:latest
-    container_name: gocd-agent
     volumes:
       - ./gocd/ssh/key:/home/go/.ssh/
       - ./gocd/ssh/config:/etc/ssh/
