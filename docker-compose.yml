@@ -17,6 +17,7 @@ services:
     volumes:
       - ./gocd/ssh/key:/home/go/.ssh/
       - ./gocd/ssh/config:/etc/ssh/
+      - ./vault-server/users/certs:/home/go/vault-certs
     build:
       context: ./gocd/go-agent
 
