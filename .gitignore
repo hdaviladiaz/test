@@ -6,6 +6,5 @@ vault-server/certs/*.key
 vault-server/file/
 gocd/ssh/key/*
 gocd/go-server/*
-!gocd/go-server/cruise-config.xml
 **/*.swp
 **/*.retry
